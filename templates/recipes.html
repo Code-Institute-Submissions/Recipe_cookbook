@@ -1,0 +1,14 @@
+<html>
+    <head></head>
+    <body>
+        {% for recipe in recipes %}
+        {{recipe.recipe_name}}
+        {{recipe.course_name}}
+        {{recipe.course_description}}
+        {{recipe.cooking_time}}
+        {{recipe.preparation_time}}
+        {{recipe.course_ingredients}}
+        {% endfor %}
+        
+    </body>
+</html>
