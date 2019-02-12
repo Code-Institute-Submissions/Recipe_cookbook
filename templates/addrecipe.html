@@ -1,0 +1,57 @@
+{% extends 'base.html'%} {% block content %}
+
+<h3>Add Recipe</h3>
+<div class="row">
+    <form action="{{ url_for('insert_recipe')}}" method="POST" class="col s12">
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">assignment</i>
+                <input id="recipe_name" name="recipe_name" type="text" class="validate">
+                <label for="icon_prefix">Recipe Name</label>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">restaurant</i>
+                    <select id="courses" name="course_name">
+                      <option value="" disabled selected>Choose your course</option>
+                      {% for course in courses %}
+                      <option value="{{course.course_name}}">{{course.course_name}}</option>  
+                      {% endfor %}
+                     </select>
+                    <label>Course Type</label>
+                </div>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">notes</i>
+                <input id="recipe_description" name="recipe_description" type="text" class="validate">
+                <label for="icon_prefix">Recipe Description</label>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">local_grocery_store</i>
+                <input id="recipe_ingredients" name="recipe_ingredients" type="text" class="validate">
+                <label for="icon_prefix">Ingredients</label>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">list</i>
+                <textarea id="recipe_instructions" name="recipe_instructions" class="materialize-textarea"></textarea>
+                <label for="icon_prefix">Recipe Instructions</label>
+            </div>
+            <div class="input-field col s3">
+                <i class="material-icons prefix">av_timer</i>
+                <label for="icon_prefix">Cooking Time</label>
+                <p class="range-field" id="cooking_time" name="cooking_time">
+                    <input type="range" id="cooking_time" min="10" max="120" />
+                    <span class="thumb" style="left: 0px; height: 0px; width: 0px; top: 10px; margin-left: -6px;">
+                    <span class="value" id="cooking_time" name="cooking_time">60</span></span><span>mins</span>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Add Recipe
+                <i class="material-icons right">add_playlist</i>
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

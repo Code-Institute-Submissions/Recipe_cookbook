@@ -1,14 +1,17 @@
-<html>
-    <head></head>
-    <body>
-        {% for recipe in recipes %}
-        {{recipe.recipe_name}}
-        {{recipe.course_name}}
-        {{recipe.course_description}}
-        {{recipe.cooking_time}}
-        {{recipe.preparation_time}}
-        {{recipe.course_ingredients}}
-        {% endfor %}
-        
-    </body>
-</html>
+{% extends 'base.html'%} {% block content %} 
+
+<ul class="collapsible popout">
+    {% for recipe in recipes %}
+    <li>
+        <div class="collapsible-header"><i class="material-icons">restaurant</i>
+        {{recipe.recipe_name}} - {{recipe.course_name}}
+        </div>
+        <div class="collapsible-body">
+            <span>{{recipe.recipe_description}}</span>
+        </div>
+    </li>
+    {% endfor %}
+
+</ul>
+
+{% endblock %}
