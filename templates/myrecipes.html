@@ -1,0 +1,25 @@
+{% extends 'base.html'%} {% block content %}
+
+<h3>My Recipes</h3>
+<ul class="collapsible popout">
+    {% for myrecipe in myrecipes %}
+    <li>
+        <div class="collapsible-header">
+            <div class="col s3">
+                <i class="material-icons">expand_more</i>
+                <a href="" class="waves-effect waves-light btn btn_small blue">Done</a>
+                <a href="" class="waves-effect waves-light btn btn_small orange">Edit</a>
+
+            </div>
+            <div class="recipe_header col s9">
+                <strong>{{myrecipe.recipe_name}}</strong> - {{myrecipe.course_name}}
+            </div>
+        </div>
+        <div class="collapsible-body">
+            <span>{{myrecipe.recipe_description}}</span>
+        </div>
+    </li>
+    {% endfor %}
+
+</ul>
+{% endblock %}
