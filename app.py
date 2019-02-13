@@ -46,7 +46,15 @@ def update_recipe(recipe_id):
     })
     return redirect(url_for('get_recipes'))
     
-
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    mongo.db.tasks.remove({'_id': ObjectId(recipe_id)})
+    return redirect(url_for('get_recipes'))
+    
+@app.route('/get_courses')
+def get_courses():
+    return render_template('courses.html',
+        courses=mongo.db.courses.find())    
 
 
 """LOGIN/LOGOUT FUNCTIONS"""
