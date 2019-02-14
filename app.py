@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, session
+from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -10,10 +10,10 @@ app.config["MONGO_URI"] = 'mongodb://coderguider:JoeyDiaz1@ds127115.mlab.com:271
 
 mongo = PyMongo(app)
 
-@app.route('/')
+
 
 ################ RECIPE DATABASE #############
-
+@app.route('/')
 @app.route('/all_recipes')
 def all_recipes():
     return render_template("allrecipes.html", 
@@ -82,32 +82,21 @@ def get_courses():
         courses=mongo.db.courses.find())    
         
 
+########## login #########
 
-"""LOGIN/LOGOUT FUNCTIONS"""
-# @app.route('/', methods=['GET', 'POST'])
-# def login():
-#     if request.method == 'POST':
-#         session['username'] = request.form['username']
-#         return redirect(url_for('lobby'))
-#     return "<h1>You are not logged in<h1><h2>Login below to join lobby!</h2>" '''
-#         <form method="post">
-#             <p><input type=text name=username>
-#             <p><input type=submit value=Login>
-#         </form>
-#     '''
+# Route for handling the login page logic
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+            error = 'Invalid Credentials. Please try again.'
+        else:
+            return redirect(url_for('myrecipes'))
+    return render_template('login.html', error=error)
 
-# @app.route('/lobby')
-# def lobby():
-#     if 'username' in session:
-#         return render_template('index.html')
-    
-    
-# @app.route('/logout')
-# def logout():
-#     # remove the username from the session if it's there
-#     session.pop('username', None)
-#     return redirect(url_for('login'))
-    
+
+######### runpage #########
 
 if __name__=='__main__':
     app.run(host=os.environ.get('IP'),
