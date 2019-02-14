@@ -12,6 +12,9 @@
         </div>
         <div class="collapsible-body">
             <span>{{recipe.recipe_description}}</span>
+            <div>
+            <a href="{{url_for('recipe_detail', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small green">View</a>
+            </div>
         </div>
     </li>
     {% endfor %}

@@ -12,11 +12,16 @@ mongo = PyMongo(app)
 
 @app.route('/')
 
+################ RECIPE DATABASE #############
+
 @app.route('/all_recipes')
 def all_recipes():
     return render_template("allrecipes.html", 
         recipes=mongo.db.recipes.find())
         
+        
+################## MY RECIPES #################
+
 @app.route('/myrecipes')
 def myrecipes():
     return render_template("myrecipes.html", 
@@ -28,19 +33,19 @@ def add_recipe():
 
 @app.route('/insert_recipe', methods=["POST"])
 def insert_recipe():
-    recipes = mongo.db.recipes
+    recipes = mongo.db.myrecipes
     recipes.insert_one(request.form.to_dict())
-    return redirect(url_for('get_recipes'))
+    return redirect(url_for('myrecipes'))
     
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
-    the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    the_recipe = mongo.db.myrecipes.find_one({"_id": ObjectId(recipe_id)})
     all_courses = mongo.db.courses.find()
     return render_template('editrecipe.html', recipe=the_recipe, courses=all_courses)
     
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
-    recipes = mongo.db.recipes
+    recipes = mongo.db.myrecipes
     recipes.update( {'_id' : ObjectId(recipe_id)},
     {
         'recipe_name' : request.form.get('recipe_name'),
@@ -48,19 +53,34 @@ def update_recipe(recipe_id):
         'recipe_description' : request.form.get('recipe_description'),
         'recipe_ingredients' : request.form.get('recipe_ingredients'),
         'recipe_instructions' : request.form.get('recipe_instructions'),
-        'cooking_time' : request.form.get('cooking_time')
+        'cooking_time' : request.form.get('cooking_time'),
+        'preparation_time' : request.form.get('preparation_time'),
+        'serves' : request.form.get('serves')
     })
-    return redirect(url_for('get_recipes'))
+    return redirect(url_for('myrecipes'))
     
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
-    mongo.db.tasks.remove({'_id': ObjectId(recipe_id)})
-    return redirect(url_for('get_recipes'))
+    mongo.db.myrecipes.remove({'_id': ObjectId(recipe_id)})
+    return redirect(url_for('myrecipes'))
+    
+    
+########### RECIPE DETAIL ##########
+
+@app.route('/recipe_detail/<recipe_id>')
+def recipe_detail(recipe_id):
+    the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    return render_template('recipedetail.html', recipe=the_recipe)
+
+    
+
+############ Courses ##########    
     
 @app.route('/get_courses')
 def get_courses():
     return render_template('courses.html',
         courses=mongo.db.courses.find())    
+        
 
 
 """LOGIN/LOGOUT FUNCTIONS"""
