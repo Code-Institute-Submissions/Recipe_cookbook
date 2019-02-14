@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -24,12 +24,16 @@ def all_recipes():
 
 @app.route('/myrecipes')
 def myrecipes():
-    return render_template("myrecipes.html", 
+    if 'username' in session:
+        return render_template("myrecipes.html", 
         myrecipes=mongo.db.myrecipes.find())
+    return redirect(url_for('login'))
         
 @app.route('/add_recipe')
 def add_recipe():
-    return render_template('addrecipe.html', courses=mongo.db.courses.find())
+    if 'username' in session:
+        return render_template('addrecipe.html', courses=mongo.db.courses.find())
+    return redirect(url_for('login'))
 
 @app.route('/insert_recipe', methods=["POST"])
 def insert_recipe():
@@ -39,9 +43,11 @@ def insert_recipe():
     
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
-    the_recipe = mongo.db.myrecipes.find_one({"_id": ObjectId(recipe_id)})
-    all_courses = mongo.db.courses.find()
-    return render_template('editrecipe.html', recipe=the_recipe, courses=all_courses)
+    if 'username' in session:
+        the_recipe = mongo.db.myrecipes.find_one({"_id": ObjectId(recipe_id)})
+        all_courses = mongo.db.courses.find()
+        return render_template('editrecipe.html', recipe=the_recipe, courses=all_courses)
+    return redirect(url_for('login'))    
     
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
@@ -84,18 +90,23 @@ def get_courses():
 
 ########## login #########
 
+# Set the secret key to some random bytes. Keep this really secret!
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
 # Route for handling the login page logic
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    error = None
     if request.method == 'POST':
-        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-            error = 'Invalid Credentials. Please try again.'
-        else:
-            return redirect(url_for('myrecipes'))
-    return render_template('login.html', error=error)
+        session['username'] = request.form['username']
+        return redirect(url_for('myrecipes'))
+    return render_template('login.html')
 
-
+@app.route('/logout')
+def logout():
+    # remove the username from the session if it's there
+    session.pop('username', None)
+    return redirect(url_for('all_recipes'))
+    
 ######### runpage #########
 
 if __name__=='__main__':
