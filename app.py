@@ -73,12 +73,11 @@ def delete_recipe(recipe_id):
     
 ########### RECIPE DETAIL ##########
 
-@app.route('/recipe_detail/<recipe_id>')
+@app.route('/recipe_detail/<recipe_id>', methods=['GET', 'POST'])
 def recipe_detail(recipe_id):
     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template('recipedetail.html', recipe=the_recipe)
 
-    
 
 ############ Courses ##########    
     
