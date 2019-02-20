@@ -14,7 +14,7 @@
         <div class="collapsible-body">
             <span>{{saved_recipes.recipe_description}}</span>
             <div>
-            <a href="#" class="waves-effect waves-light btn btn_small blue">Edit</a>
+            <a href="{{url_for('saved_recipe_detail', recipe_id=saved_recipes._id)}}" class="waves-effect waves-light btn btn_small green">View</a>
             </div>
         </div>
     </li>
