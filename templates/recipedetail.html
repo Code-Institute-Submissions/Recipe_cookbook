@@ -16,7 +16,7 @@
 
         </div>
         <div>
-            <a class="btn-floating btn waves-effect waves-light teal" href=""><i class="material-icons">star</i></a>
+            <a class="btn-floating btn waves-effect waves-light teal" href="{{url_for('add_saved_recipe', recipe_id=recipe._id)}}"><i class="material-icons">star</i></a>
         </div>
     </div>
     <div class="row">
@@ -28,6 +28,7 @@
                         {% for ingredient in recipe.recipe_ingredients %}
                         <p><strong>{{ingredient.measurement}}</strong>
                         {{ingredient.name}} <i>{{ingredient.note}}</i>
+                        {{ "," if not loop.last }}
                         </p>
                         {% endfor %}
                     </div>

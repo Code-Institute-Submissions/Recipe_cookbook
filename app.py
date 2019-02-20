@@ -79,6 +79,29 @@ def recipe_detail(recipe_id):
     return render_template('recipedetail.html', recipe=the_recipe)
 
 
+
+
+######### SAVED RECIPES ###########
+
+
+@app.route('/saved_recipes')
+def saved_recipes():
+    if 'username' in session:
+        return render_template("savedrecipes.html", 
+        saved_recipes=mongo.db.saved_recipes.find())
+    return redirect(url_for('login'))
+
+@app.route('/add_saved_recipe/<recipe_id>', methods=["GET"])
+def add_saved_recipe(recipe_id):
+    recipes = mongo.db.recipes
+    savedrecipe = mongo.db.saved_recipes
+    recipe_id = recipes.find_one({"_id": ObjectId(recipe_id)})
+    savedrecipe.insert_one(recipe_id)
+    if 'username' in session:
+        return redirect(url_for('saved_recipes'))
+    return redirect(url_for('login'))
+
+
 ############ Courses ##########    
     
 @app.route('/get_courses')
