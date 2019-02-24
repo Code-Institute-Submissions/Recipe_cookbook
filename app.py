@@ -96,18 +96,19 @@ def add_saved_recipe(recipe_id):
     recipes = mongo.db.recipes
     savedrecipe = mongo.db.saved_recipes
     recipe_id = recipes.find_one({"_id": ObjectId(recipe_id)})
+    del recipe_id['_id'] ### kept getting "E11000 duplicate key error" - deleted _id to get around it
     savedrecipe.insert_one(recipe_id)
     if 'username' in session:
         return redirect(url_for('saved_recipes'))
     return redirect(url_for('login'))
+    
 
 @app.route('/saved_recipe_detail/<recipe_id>', methods=['GET', 'POST'])
 def saved_recipe_detail(recipe_id):
     the_saved_recipe = mongo.db.saved_recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template('savedrecipedetail.html', recipe=the_saved_recipe)
     
-    
-    
+
 ############ Courses ##########    
     
 @app.route('/get_courses')
