@@ -2,8 +2,6 @@ import os
 from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from forms import RecipeSearchForm
-
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'recipe_database'
@@ -14,7 +12,7 @@ mongo = PyMongo(app)
 
 
 ################ RECIPE DATABASE #############
-  
+@app.route('/')  
 @app.route('/all_recipes', methods=['GET', 'POST'])
 def all_recipes():
     Recipes= mongo.db.recipes
@@ -22,6 +20,7 @@ def all_recipes():
     bcuisine_count = mongo.db.recipes.find({"cuisine" : "British"}).count()
     ccuisine_count = mongo.db.recipes.find({"cuisine" : "Chinese"}).count()
     ucuisine_count = mongo.db.recipes.find({"cuisine" : "unspecified"}).count()
+
     return render_template("allrecipes.html", recipe_count=str(recipe_count), ccuisine_count=str(ccuisine_count), 
         bcuisine_count=str(bcuisine_count), ucuisine_count=str(ucuisine_count), recipes=mongo.db.recipes.find())
 

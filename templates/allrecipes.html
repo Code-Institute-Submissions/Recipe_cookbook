@@ -5,20 +5,32 @@
 <p>Number of British Cuisines: {{ bcuisine_count }}</p>
 <p>Number of Chinese Cuisines: {{ ccuisine_count }}</p>
 <p>Number of Unspecified Cuisines: {{ ucuisine_count }}</p>
-<ul class="collapsible popout">
-    {% for cuisine in cuisine_count %}
+<span>
+    <ul class="collapsible popout">
     <li>
         <div class="collapsible-header">
             <div class="recipe_header col s9">
                 <i class="material-icons">expand_more</i>
-                <strong>See Recipes by Cuisine</strong>
+                <strong>Number of British Cuisines</strong>
             </div>
         </div>
         <div class="collapsible-body">
-            <span>{{cuisine.cuisine_count}}</span>
+            <span>{{bcuisine_count}}</span>
         </div>
     </li>
-    {% endfor %}
+    <ul class="collapsible popout">
+    <li>
+        <div class="collapsible-header">
+            <div class="recipe_header col s9">
+                <i class="material-icons">expand_more</i>
+                <strong>Number of Chinese Cuisines</strong>
+            </div>
+        </div>
+        <div class="collapsible-body">
+            <span>{{ccuisine_count}}</span>
+        </div>
+    </li>
+</span>
 
 </ul>
 <p>Recipe count: {{ recipe_count }}</p>
