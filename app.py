@@ -28,11 +28,11 @@ def all_recipes():
 
 @app.route('/myrecipes')
 def myrecipes():
-    Recipe=mongo.db.myrecipes
-    recipe_count = Recipe.count()
-    bcuisine_count = mongo.db.recipes.find({"cuisine" : "British"}).count()
-    ccuisine_count = mongo.db.recipes.find({"cuisine" : "Chinese"}).count()
-    ucuisine_count = mongo.db.recipes.find({"cuisine" : "unspecified"}).count()
+    myrecipes=mongo.db.myrecipes
+    recipe_count = myrecipes.count()
+    bcuisine_count = mongo.db.myrecipes.find({"cuisine" : "British"}).count()
+    ccuisine_count = mongo.db.myrecipes.find({"cuisine" : "Chinese"}).count()
+    ucuisine_count = mongo.db.myrecipes.find({"cuisine" : "unspecified"}).count()
     if 'username' in session:
         return render_template("myrecipes.html", recipe_count=str(recipe_count), ccuisine_count=str(ccuisine_count), 
         bcuisine_count=str(bcuisine_count), ucuisine_count=str(ucuisine_count),
