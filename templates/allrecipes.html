@@ -1,6 +1,26 @@
 {% extends 'base.html'%} {% block content %}
 
 <h3>All Recipes</h3>
+
+<p>Number of British Cuisines: {{ bcuisine_count }}</p>
+<p>Number of Chinese Cuisines: {{ ccuisine_count }}</p>
+<p>Number of Unspecified Cuisines: {{ ucuisine_count }}</p>
+<ul class="collapsible popout">
+    {% for cuisine in cuisine_count %}
+    <li>
+        <div class="collapsible-header">
+            <div class="recipe_header col s9">
+                <i class="material-icons">expand_more</i>
+                <strong>See Recipes by Cuisine</strong>
+            </div>
+        </div>
+        <div class="collapsible-body">
+            <span>{{cuisine.cuisine_count}}</span>
+        </div>
+    </li>
+    {% endfor %}
+
+</ul>
 <p>Recipe count: {{ recipe_count }}</p>
 <ul class="collapsible popout">
     {% for recipe in recipes %}
@@ -14,10 +34,10 @@
         <div class="collapsible-body">
             <span>{{recipe.recipe_description}}</span>
             <div>
-            <a href="{{url_for('recipe_detail', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small green">View</a>
+                <a href="{{url_for('recipe_detail', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small green">View</a>
             </div>
             <div>
-            <a href="{{url_for('add_saved_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small green">Save</a>
+                <a href="{{url_for('add_saved_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small green">Save</a>
             </div>
         </div>
     </li>

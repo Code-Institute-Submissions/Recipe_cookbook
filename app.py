@@ -1,7 +1,8 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, session
+from flask import Flask, render_template, redirect, request, url_for, session, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from forms import RecipeSearchForm
 
 
 app = Flask(__name__)
@@ -13,21 +14,29 @@ mongo = PyMongo(app)
 
 
 ################ RECIPE DATABASE #############
-@app.route('/')
-@app.route('/all_recipes')
+  
+@app.route('/all_recipes', methods=['GET', 'POST'])
 def all_recipes():
     Recipes= mongo.db.recipes
     recipe_count = Recipes.count()
-    return render_template("allrecipes.html", recipe_count=str(recipe_count),
-        recipes=mongo.db.recipes.find())
-        
-        
+    bcuisine_count = mongo.db.recipes.find({"cuisine" : "British"}).count()
+    ccuisine_count = mongo.db.recipes.find({"cuisine" : "Chinese"}).count()
+    ucuisine_count = mongo.db.recipes.find({"cuisine" : "unspecified"}).count()
+    return render_template("allrecipes.html", recipe_count=str(recipe_count), ccuisine_count=str(ccuisine_count), 
+        bcuisine_count=str(bcuisine_count), ucuisine_count=str(ucuisine_count), recipes=mongo.db.recipes.find())
+
 ################## MY RECIPES #################
 
 @app.route('/myrecipes')
 def myrecipes():
+    Recipe=mongo.db.myrecipes
+    recipe_count = Recipe.count()
+    bcuisine_count = mongo.db.recipes.find({"cuisine" : "British"}).count()
+    ccuisine_count = mongo.db.recipes.find({"cuisine" : "Chinese"}).count()
+    ucuisine_count = mongo.db.recipes.find({"cuisine" : "unspecified"}).count()
     if 'username' in session:
-        return render_template("myrecipes.html", 
+        return render_template("myrecipes.html", recipe_count=str(recipe_count), ccuisine_count=str(ccuisine_count), 
+        bcuisine_count=str(bcuisine_count), ucuisine_count=str(ucuisine_count),
         myrecipes=mongo.db.myrecipes.find())
     return redirect(url_for('login'))
         
@@ -81,15 +90,19 @@ def recipe_detail(recipe_id):
     return render_template('recipedetail.html', recipe=the_recipe)
 
 
-
-
 ######### SAVED RECIPES ###########
 
 
 @app.route('/saved_recipes')
 def saved_recipes():
+    Recipe=mongo.db.saved_recipes
+    recipe_count = Recipe.count()
+    bcuisine_count = mongo.db.recipes.find({"cuisine" : "British"}).count()
+    ccuisine_count = mongo.db.recipes.find({"cuisine" : "Chinese"}).count()
+    ucuisine_count = mongo.db.recipes.find({"cuisine" : "unspecified"}).count()
     if 'username' in session:
-        return render_template("savedrecipes.html", 
+        return render_template("savedrecipes.html", recipe_count=str(recipe_count), ccuisine_count=str(ccuisine_count), 
+        bcuisine_count=str(bcuisine_count), ucuisine_count=str(ucuisine_count),
         saved_recipes=mongo.db.saved_recipes.find())
     return redirect(url_for('login'))
 
@@ -111,6 +124,13 @@ def saved_recipe_detail(recipe_id):
     return render_template('savedrecipedetail.html', recipe=the_saved_recipe)
     
 
+@app.route('/recipe_list_filtered', methods = ['POST'])
+def recipe_list_filtered():
+    cuisine = mongo.db.recipes.find({"cuisine" : "false"})
+    bcuisine_count = mongo.db.recipes.find({"cuisine" : "British"}).count()
+    recipe = mongo.db.recipes
+
+    return render_template('allrecipes.html', bcuisine_count=str(bcuisine_count), cuisine=cuisine)
 ############ Courses ##########    
     
 @app.route('/get_courses')

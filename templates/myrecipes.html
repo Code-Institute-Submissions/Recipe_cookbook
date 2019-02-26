@@ -1,6 +1,10 @@
 {% extends 'base.html'%} {% block content %}
 
 <h3>My Recipes</h3>
+<p>Recipe count: {{ recipe_count }}</p>
+<p>Number of British Cuisines: {{ bcuisine_count }}</p>
+<p>Number of Chinese Cuisines: {{ ccuisine_count }}</p>
+<p>Number of Unspecified Cuisines: {{ ucuisine_count }}</p>
 <ul class="collapsible popout">
     {% for myrecipe in myrecipes %}
     <li>
