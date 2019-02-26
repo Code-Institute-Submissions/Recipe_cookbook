@@ -65,7 +65,7 @@
                 <p class="range-field">
                     <input type="range" id="cooking_time" name="cooking_time" class="validate" min="10" max="120" />
                     <span class="thumb" style="left: 0px; height: 0px; width: 0px; top: 10px; margin-left: -6px;">
-                    <span>{{recipe.cooking_time}}</span>
+                    <span class="value" id="" name="">{{recipe.cooking_time}}</span>
                     </span>
                     <span>mins</span>
                 </p>
@@ -74,7 +74,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">people_outline</i>
-                <input id="serves" name="serves" type="text" class="validate">
+                <input id="serves" name="serves" type="text" class="validate" value="{{recipe.serves}}">
                 <label for="icon_prefix">Serves</label>
             </div>
         </div>
@@ -86,7 +86,7 @@
     <button class="waves-effect waves-light btn red">
     <i class="material-icons right">remove_circle_outline</i>
         <a href="{{ url_for('delete_recipe', recipe_id=recipe._id)}}">remove</a>
-    </button>    
+    </button>
 </div>
 </form>
 </div>
