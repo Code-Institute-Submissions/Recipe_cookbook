@@ -22,17 +22,17 @@
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="{{url_for('all_recipes')}}"><i class="material-icons left">home</i>Home</a></li>
-                    <li><a href="{{url_for('myrecipes')}}"><i class="material-icons left">book</i>My Recipes</a></li>
+                    <li><a href="{{url_for('myrecipes')}}"><i class="material-icons left">view_list</i>My Recipes</a></li>
                     <li><a href="{{url_for('saved_recipes')}}"><i class="material-icons left">star</i>Saved Recipe</a></li>
                     <li><a href="{{url_for('add_recipe')}}"><i class="material-icons left">queue</i>Add Your Own Recipes</a></li>
-                    <li><a href="{{url_for('get_courses')}}"><i class="material-icons left">view_list</i>View Courses</a></li>
                     <!-- Dropdown Trigger -->
                     <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons left">account_circle</i>{{session['username']}}<i class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
                     <li><a href="{{url_for('all_recipes')}}">Home</a></li>
                     <li><a href="{{url_for('myrecipes')}}">My Recipes</a></li>
-                    <li><a href="{{url_for('get_courses')}}">View Courses</a></li>
+                    <li><a href="{{url_for('saved_recipes')}}">Saved Recipe</a></li>
+                    <li><a href="{{url_for('add_recipe')}}">Add Your Own Recipes</a></li>
                 </ul>
             </div>
         </nav>
@@ -47,6 +47,7 @@
             $('.collapsible').collapsible();
             $('select').material_select();
             $(".dropdown-button").dropdown();
+            $(".button-collapse").sideNav();
         });
     </script>
 </body>
