@@ -2,36 +2,40 @@
 
 <h3>All Recipes</h3>
 
-<p>Number of British Cuisines: {{ bcuisine_count }}</p>
-<p>Number of Chinese Cuisines: {{ ccuisine_count }}</p>
-<p>Number of Unspecified Cuisines: {{ ucuisine_count }}</p>
-<span>
-    <ul class="collapsible popout">
-    <li>
-        <div class="collapsible-header">
-            <div class="recipe_header col s9">
-                <i class="material-icons">expand_more</i>
-                <strong>Number of British Cuisines</strong>
-            </div>
-        </div>
-        <div class="collapsible-body">
-            <span>{{bcuisine_count}}</span>
-        </div>
-    </li>
-    <ul class="collapsible popout">
-    <li>
-        <div class="collapsible-header">
-            <div class="recipe_header col s9">
-                <i class="material-icons">expand_more</i>
-                <strong>Number of Chinese Cuisines</strong>
-            </div>
-        </div>
-        <div class="collapsible-body">
-            <span>{{ccuisine_count}}</span>
-        </div>
-    </li>
-</span>
+<div class="row">
+    <div class="col s12 m6">
+        <div class="card-panel teal lighten-5">
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th>Cusine</th>
+                        <th>Country of Origin</th>
+                        <th>No. of cuisines</th>
+                    </tr>
+                </thead>
 
+                <tbody>
+                    <tr>
+                        <td>British</td>
+                        <td>Britain</td>
+                        <td>{{bcuisine_count}}</td>
+
+                    </tr>
+                    <tr>
+                        <td>Chinese</td>
+                        <td>China</td>
+                        <td>{{ccuisine_count}}</td>
+                    </tr>
+                    <tr>
+                        <td>Unspecified</td>
+                        <td>unspecified</td>
+                        <td>{{ ucuisine_count }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 </ul>
 <p>Recipe count: {{ recipe_count }}</p>
 <ul class="collapsible popout">
