@@ -1,53 +1,59 @@
 {% extends 'base.html'%} {% block content %}
 
-<h3>Add Recipe</h3>
 <div class="row">
-    <form action="{{ url_for('insert_recipe')}}" method="POST" class="col s12">
-        
-            <div class="input-field col s12">
-                <i class="material-icons prefix">assignment</i>
-                <input id="recipe_name" name="recipe_name" type="text" class="validate">
-                <label for="icon_prefix">Recipe Name</label>
-            </div>
+    <div class="col s12 m3">
+        <div class="card-panel grey darken-2 opacity">
+            <h3 class="white-text">Add Recipe</h3>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <form action="{{ url_for('insert_recipe')}}" method="POST" class="card-panel grey darken-2 white-text opacity col s12">
 
-            <div class="input-field col s12">
-                <i class="material-icons prefix">restaurant</i>
-                <select id="course" name="course_name">
+        <div class="input-field col s12 white-text">
+            <i class="material-icons prefix">assignment</i>
+            <input id="recipe_name" name="recipe_name" type="text" class="validate">
+            <label for="icon_prefix" class="white-text">Recipe Name</label>
+        </div>
+
+        <div class="input-field col s12">
+            <i class="material-icons prefix grey-text">restaurant</i>
+            <select id="course" name="course_name">
                     <option value="" disabled selected>Choose course</option>
                     {% for cou in courses %}
                     <option value="{{cou.course_name}}">{{cou.course_name}}</option>  
                     {% endfor %}
                 </select>
-                <label>Course Type</label>
-            </div>
+            <label class="white-text">Course Type</label>
+        </div>
         <div class="input-field col s12">
-            <i class="material-icons prefix">whatshot</i>
+            <i class="material-icons prefix red-text">whatshot</i>
             <input id="cuisine" name="cuisine" type="text" class="validate">
-            <label for="icon_prefix">Cuisine type eg. <i>British, Indian, Chinese, Mexican etc.</i></label>
+            <label for="icon_prefix" class="white-text">Cuisine type eg. <i>British, Indian, Chinese, Mexican etc.</i></label>
         </div>
         <div class="input-field col s12">
-            <i class="material-icons prefix">public</i>
+            <i class="material-icons prefix green-text">public</i>
             <input id="country" name="country" type="text" class="validate">
-            <label for="icon_prefix">Country of Origin</label>
+            <label for="icon_prefix" class="white-text">Country of Origin</label>
         </div>
         <div class="input-field col s12">
-            <i class="material-icons prefix">notes</i>
+            <i class="material-icons prefix black-text">notes</i>
             <input id="recipe_description" name="recipe_description" type="text" class="validate">
-            <label for="icon_prefix">Recipe Description</label>
+            <label for="icon_prefix" class="white-text">Recipe Description</label>
         </div>
         <div class="input-field col s12">
-            <i class="material-icons prefix">local_grocery_store</i>
+            <i class="material-icons prefix blue-text">local_grocery_store</i>
             <input id="recipe_ingredients" name="recipe_ingredients" type="text" class="validate">
-            <label for="icon_prefix">Ingredients <i>(separate ingredients with commas)</i></label>
+            <label for="icon_prefix" class="white-text">Ingredients <i>(separate ingredients with commas)</i></label>
         </div>
         <div class="input-field col s12">
-            <i class="material-icons prefix">list</i>
+            <i class="material-icons prefix black-text">list</i>
             <textarea id="recipe_instructions" name="recipe_instructions" class="materialize-textarea"></textarea>
-            <label for="icon_prefix">Recipe Instructions <i>(number instructions and separate with commas)</i></label>
+            <label for="icon_prefix" class="white-text">Recipe Instructions <i>(number instructions and separate with commas)</i></label>
         </div>
         <div class="input-field col s3">
-            <i class="material-icons prefix">av_timer</i>
-            <label for="icon_prefix">Prep Time</label>
+            <i class="material-icons prefix yellow-text">av_timer</i>
+            <label for="icon_prefix" class="white-text">Prep Time</label>
             <br>
             <p class="range-field" id="" name="">
                 <input type="range" id="preparation_time" name="preparation_time" class="validate" min="10" max="40" />
@@ -56,8 +62,8 @@
             </p>
         </div>
         <div class="input-field col s3">
-            <i class="material-icons prefix">av_timer</i>
-            <label for="icon_prefix">Cooking Time</label>
+            <i class="material-icons prefix yellow-text">av_timer</i>
+            <label for="icon_prefix" class="white-text">Cooking Time</label>
             <br>
             <p class="range-field" id="" name="">
                 <input type="range" id="cooking_time" name="cooking_time" class="validate" min="10" max="120" />
@@ -68,18 +74,21 @@
         <div class="input-field col s12">
             <i class="material-icons prefix">people_outline</i>
             <input id="serves" name="serves" type="text" class="validate">
-            <label for="icon_prefix">Serves</label>
+            <label for="icon_prefix" class="white-text">Serves</label>
         </div>
         <div class="input-field col s12">
             <i class="material-icons prefix">person_outline</i>
             <input id="author" name="author" type="text" class="validate">
-            <label for="icon_prefix">Author</label>
+            <label for="icon_prefix" class="white-text">Author</label>
         </div>
 </div>
 <div class="row">
     <button class="btn waves-effect grey darken-4" type="submit" name="action">Add Recipe
         <i class="material-icons right">playlist_add</i>
     </button>
+    <a class="waves-effect blue-grey darken-1 btn" href="#" onclick="location.href = document.referrer; return false;"><i class="material-icons left">arrow_back
+</i>Go Back
+            </a>
 </div>
 </form>
 </div>
