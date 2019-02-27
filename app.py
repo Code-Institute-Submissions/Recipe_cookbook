@@ -25,7 +25,7 @@ def all_recipes():
     incuisine_count = mongo.db.myrecipes.find({"cuisine" : "Indian"}).count()
     ucuisine_count = mongo.db.myrecipes.find({"cuisine" : "unspecified"}).count()
 
-    return render_template("allrecipes.html", recipe_count=str(recipe_count), ccuisine_count=str(ccuisine_count), 
+    return render_template("index.html", recipe_count=str(recipe_count), ccuisine_count=str(ccuisine_count), 
         bcuisine_count=str(bcuisine_count), ucuisine_count=str(ucuisine_count), recipes=mongo.db.recipes.find())
 
 ################## MY RECIPES #################
@@ -147,7 +147,7 @@ def recipe_list_filtered():
     bcuisine_count = mongo.db.recipes.find({"cuisine" : "British"}).count()
     recipe = mongo.db.recipes
 
-    return render_template('allrecipes.html', bcuisine_count=str(bcuisine_count), cuisine=cuisine)
+    return render_template('index.html', bcuisine_count=str(bcuisine_count), cuisine=cuisine)
 ############ Courses ##########    
     
 @app.route('/get_courses')
