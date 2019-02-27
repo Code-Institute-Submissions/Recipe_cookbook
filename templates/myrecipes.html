@@ -64,7 +64,7 @@
                     <span class="card-title white-text"><strong>{{myrecipe.recipe_name}}</strong></span>
                     <span class="card-title white-text">({{myrecipe.course_name}})</span>
                     <span class="white-text">{{myrecipe.recipe_description}}</span>
-                    <h6 class="white-text"><strong>Author: {{myrecipe.author_name}}</strong></h6>
+                    <h6 class="white-text"><strong>Author: {{myrecipe.author}}</strong></h6>
                 </div>
                 <div class="card-action">
                     <a href="{{ url_for('edit_recipe', recipe_id=myrecipe._id)}}">Edit Recipe</a>
