@@ -3,14 +3,13 @@
 <h3>Add Recipe</h3>
 <div class="row">
     <form action="{{ url_for('insert_recipe')}}" method="POST" class="col s12">
-        <div class="row">
+        
             <div class="input-field col s12">
                 <i class="material-icons prefix">assignment</i>
                 <input id="recipe_name" name="recipe_name" type="text" class="validate">
                 <label for="icon_prefix">Recipe Name</label>
             </div>
-        </div>
-        <div class="row">
+
             <div class="input-field col s12">
                 <i class="material-icons prefix">restaurant</i>
                 <select id="course" name="course_name">
@@ -21,6 +20,15 @@
                 </select>
                 <label>Course Type</label>
             </div>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">whatshot</i>
+            <input id="cuisines" name="cuisines" type="text" class="validate">
+            <label for="icon_prefix">Cuisine type eg. <i>British, Indian, Chinese, Mexican etc.</i></label>
+        </div>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">public</i>
+            <input id="country" name="country" type="text" class="validate">
+            <label for="icon_prefix">Country of Origin</label>
         </div>
         <div class="input-field col s12">
             <i class="material-icons prefix">notes</i>
@@ -62,9 +70,14 @@
             <input id="serves" name="serves" type="text" class="validate">
             <label for="icon_prefix">Serves</label>
         </div>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">person_outline</i>
+            <input id="author" name="author" type="text" class="validate">
+            <label for="icon_prefix">Author</label>
+        </div>
 </div>
 <div class="row">
-    <button class="btn waves-effect waves-light" type="submit" name="action">Add Recipe
+    <button class="btn waves-effect grey darken-4" type="submit" name="action">Add Recipe
         <i class="material-icons right">playlist_add</i>
     </button>
 </div>
