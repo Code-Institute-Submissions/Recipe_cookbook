@@ -16,7 +16,7 @@
 
         </div>
         <div>
-            <a class="btn-floating btn waves-effect waves-light teal" href="/"><i class="material-icons">star</i></a>
+            <a class="btn-floating btn waves-effect waves-light teal" href="{{url_for('delete_recipe', recipe_id=recipe._id)}}"><i class="material-icons">delete_outline</i></a>
         </div>
     </div>
     <div class="row">
@@ -42,4 +42,11 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col s12 m8">
+            <a class="waves-effect waves-light btn" href="{{url_for('myrecipes')}}"><i class="material-icons left">arrow_back_ios</i>Back to your recipes
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}
