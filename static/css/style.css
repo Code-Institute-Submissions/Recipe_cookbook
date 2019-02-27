@@ -16,6 +16,10 @@
     margin-left: 5px;
 }
 
-    
+nav ul li:hover {
+   background-color: #616161;
+}
 
-
+nav ul li:active {
+   background-color: #616161;
+}
