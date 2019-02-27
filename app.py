@@ -127,6 +127,11 @@ def saved_recipe_detail(recipe_id):
     the_saved_recipe = mongo.db.saved_recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template('savedrecipedetail.html', recipe=the_saved_recipe)
     
+@app.route('/delete_saved_recipe/<recipe_id>')
+def delete_saved_recipe(recipe_id):
+    mongo.db.saved_recipes.remove({'_id': ObjectId(recipe_id)})
+    return redirect(url_for('saved_recipes'))    
+    
 
 @app.route('/recipe_list_filtered', methods = ['POST'])
 def recipe_list_filtered():
