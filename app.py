@@ -17,9 +17,13 @@ mongo = PyMongo(app)
 def all_recipes():
     Recipes= mongo.db.recipes
     recipe_count = Recipes.count()
-    bcuisine_count = mongo.db.recipes.find({"cuisine" : "British"}).count()
-    ccuisine_count = mongo.db.recipes.find({"cuisine" : "Chinese"}).count()
-    ucuisine_count = mongo.db.recipes.find({"cuisine" : "unspecified"}).count()
+    bcuisine_count = mongo.db.myrecipes.find({"cuisine" : "British"}).count()
+    ccuisine_count = mongo.db.myrecipes.find({"cuisine" : "Chinese"}).count()
+    mcuisine_count = mongo.db.myrecipes.find({"cuisine" : "Mexican"}).count()
+    acuisine_count = mongo.db.myrecipes.find({"cuisine" : "American"}).count()
+    icuisine_count = mongo.db.myrecipes.find({"cuisine" : "Italian"}).count()
+    incuisine_count = mongo.db.myrecipes.find({"cuisine" : "Indian"}).count()
+    ucuisine_count = mongo.db.myrecipes.find({"cuisine" : "unspecified"}).count()
 
     return render_template("allrecipes.html", recipe_count=str(recipe_count), ccuisine_count=str(ccuisine_count), 
         bcuisine_count=str(bcuisine_count), ucuisine_count=str(ucuisine_count), recipes=mongo.db.recipes.find())
@@ -32,6 +36,10 @@ def myrecipes():
     recipe_count = myrecipes.count()
     bcuisine_count = mongo.db.myrecipes.find({"cuisine" : "British"}).count()
     ccuisine_count = mongo.db.myrecipes.find({"cuisine" : "Chinese"}).count()
+    mcuisine_count = mongo.db.myrecipes.find({"cuisine" : "Mexican"}).count()
+    acuisine_count = mongo.db.myrecipes.find({"cuisine" : "American"}).count()
+    icuisine_count = mongo.db.myrecipes.find({"cuisine" : "Italian"}).count()
+    incuisine_count = mongo.db.myrecipes.find({"cuisine" : "Indian"}).count()
     ucuisine_count = mongo.db.myrecipes.find({"cuisine" : "unspecified"}).count()
     if 'username' in session:
         return render_template("myrecipes.html", recipe_count=str(recipe_count), ccuisine_count=str(ccuisine_count), 
