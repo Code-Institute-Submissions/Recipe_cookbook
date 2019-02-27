@@ -1,19 +1,24 @@
 {% extends 'base.html'%} {% block content %}
 
-<h3>Edit Recipe</h3>
-</br>
 <div class="row">
-    <form action="{{ url_for('update_recipe', recipe_id=recipe._id)}}" method="POST" class="col s12">
+    <div class="col s12 m3">
+        <div class="card-panel grey darken-2 opacity">
+            <h3 class="white-text">Edit Recipe</h3>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <form action="{{ url_for('update_recipe', recipe_id=recipe._id)}}" method="POST" class="card-panel grey darken-2 white-text opacity col s12">
         <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field col s12 white-text">
                 <i class="material-icons prefix">assignment</i>
                 <input id="recipe_name" name="recipe_name" type="text" class="validate" value="{{recipe.recipe_name}}">
-                <label for="icon_prefix">Recipe Name</label>
+                <label for="icon_prefix" class="white-text">Recipe Name</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <i class="material-icons prefix">restaurant</i>
+                <i class="material-icons prefix grey-text">restaurant</i>
                 <select id="course" name="course_name">
                     <option value="" disabled selected>Choose course</option>
                     {% for cou in courses %}
@@ -24,48 +29,48 @@
                         {% endif %}
                     {% endfor %}
                 </select>
-                <label>Course Type</label>
+                <label class="white-text">Course Type</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <i class="material-icons prefix">whatshot</i>
+                <i class="material-icons prefix red-text">whatshot</i>
                 <input id="cuisines" name="cuisines" type="text" class="validate" value="{{recipe.cuisine}}">
-                <label for="icon_prefix">Cuisine type eg. <i>British, Indian, Chinese, Mexican etc.</i></label>
+                <label for="icon_prefix" class="white-text">Cuisine type eg. <i>British, Indian, Chinese, Mexican etc.</i></label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <i class="material-icons prefix">public</i>
+                <i class="material-icons prefix green-text">public</i>
                 <input id="country" name="countrys" type="text" class="validate" value="{{recipe.country}}">
-                <label for="icon_prefix">Country of Origin</label>
+                <label for="icon_prefix" class="white-text">Country of Origin</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <i class="material-icons prefix">notes</i>
+                <i class="material-icons prefix black-text">notes</i>
                 <input id="recipe_description" name="recipe_description" type="text" class="validate" value="{{recipe.recipe_description}}">
-                <label for="icon_prefix">Recipe Description</label>
+                <label for="icon_prefix" class="white-text">Recipe Description</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <i class="material-icons prefix">local_grocery_store</i>
+                <i class="material-icons prefix blue-text">local_grocery_store</i>
                 <input id="recipe_ingredients" name="recipe_ingredients" type="text" class="validate" value="{{recipe.recipe_ingredients}}">
-                <label for="icon_prefix">Ingredients <i>(separate ingredients with commas)</i></label>
+                <label for="icon_prefix" class="white-text">Ingredients <i>(separate ingredients with commas)</i></label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <i class="material-icons prefix">list</i>
+                <i class="material-icons prefix black-text">list</i>
                 <textarea id="recipe_instructions" name="recipe_instructions" class="materialize-textarea">{{recipe.recipe_instructions}}</textarea>
-                <label for="icon_prefix">Recipe Instructions <i>(number instructions and separate with commas)</i></label>
+                <label for="icon_prefix" class="white-text">Recipe Instructions <i>(number instructions and separate with commas)</i></label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s3">
-                <i class="material-icons prefix">av_timer</i>
-                <label for="icon_prefix">Prep Time</label>
+                <i class="material-icons prefix yellow-text">av_timer</i>
+                <label for="icon_prefix" class="white-text">Prep Time</label>
                 <br>
                 <p class="range-field" id="" name="">
                     <input type="range" id="preparation_time" name="preparation_time" class="validate" min="10" max="40" />
@@ -74,8 +79,8 @@
                 </p>
             </div>
             <div class="input-field col s3">
-                <i class="material-icons prefix">av_timer</i>
-                <label for="icon_prefix">Cooking Time</label>
+                <i class="material-icons prefix yellow-text">av_timer</i>
+                <label for="icon_prefix" class="white-text">Cooking Time</label>
                 <br>
                 <p class="range-field">
                     <input type="range" id="cooking_time" name="cooking_time" class="validate" min="10" max="120" />
@@ -90,14 +95,14 @@
             <div class="input-field col s12">
                 <i class="material-icons prefix">people_outline</i>
                 <input id="serves" name="serves" type="text" class="validate" value="{{recipe.serves}}">
-                <label for="icon_prefix">Serves</label>
+                <label for="icon_prefix" class="white-text">Serves</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">person_outline</i>
                 <input id="author" name="author" type="text" class="validate" value="{{recipe.author}}">
-                <label for="icon_prefix">Author</label>
+                <label for="icon_prefix" class="white-text">Author</label>
             </div>
         </div>
 </div>
