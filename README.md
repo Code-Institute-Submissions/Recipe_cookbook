@@ -35,7 +35,6 @@ Built primarily off the mini project example as basic framework. Website layout 
 
 ## Deployment
 * Download the project files to your computer
-* Make sure requirements.txt and Procfile exist: 'pip3 freeze --local requirements.txt echo web: python app.py > Procfile'
 * Connect to the database: user: password:<JoeyDiaz1>
     * export MONGO_URI=mongodb://coderguider:JoeyDiaz1@ds127115.mlab.com:27115/recipe_database  
     * python3 new_mongo.py
