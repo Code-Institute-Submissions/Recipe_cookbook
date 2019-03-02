@@ -17,7 +17,6 @@ lazr.restfulclient==0.14.2
 lazr.uri==1.0.3
 lockfile==0.12.2 
 MarkupSafe==1.1.1
-mercurial==4.9
 oauth==1.0.1
 paramiko==2.4.2
 pycrypto==2.6.1
