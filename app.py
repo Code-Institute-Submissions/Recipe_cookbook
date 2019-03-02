@@ -3,7 +3,7 @@ from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 app.config["MONGO_DBNAME"] = 'recipe_database'
 app.config["MONGO_URI"] = 'mongodb://coderguider:JoeyDiaz1@ds127115.mlab.com:27115/recipe_database'
 
