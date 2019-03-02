@@ -11,7 +11,7 @@ html5lib==0.999
 httplib2==0.8
 itsdangerous==1.1.0
 Jinja2==2.10
-keyring==3.5
+keyring==18
 launchpadlib==1.10.2
 lazr.restfulclient==0.13.3
 lazr.uri==1.0.3
