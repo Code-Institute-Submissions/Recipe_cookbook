@@ -12,7 +12,7 @@ httplib2==0.8
 itsdangerous==1.1.0
 Jinja2==2.10
 keyring==18
-launchpadlib==1.10.2
+launchpadlib==1.10.6
 lazr.restfulclient==0.13.3
 lazr.uri==1.0.3
 lockfile==0.8
