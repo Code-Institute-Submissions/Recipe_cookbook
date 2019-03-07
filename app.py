@@ -179,5 +179,5 @@ def logout():
 
 if __name__=='__main__':
     app.run(host=os.environ.get('IP'),
-        port=8080,
+        port=int(os.environ.get('PORT')),
         debug=True)
