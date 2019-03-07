@@ -14,5 +14,6 @@ pyOpenSSL==0.13.1
 pyparsing==2.0.1
 python-dateutil==1.5
 pytz==2013.7
+setuptools==40.8.0
 six==1.4.1
 Werkzeug==0.14.1
