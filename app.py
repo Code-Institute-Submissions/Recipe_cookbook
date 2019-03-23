@@ -25,8 +25,8 @@ def all_recipes():
     incuisine_count = mongo.db.recipes.find({"cuisine" : "Indian"}).count()
     ucuisine_count = mongo.db.recipes.find({"cuisine" : "unspecified"}).count()
 
-    return render_template("index.html", recipe_count=str(recipe_count), ccuisine_count=str(ccuisine_count), 
-        bcuisine_count=str(bcuisine_count), ucuisine_count=str(ucuisine_count), acuisine_count=str(acuisine_count), recipes=mongo.db.recipes.find())
+    return render_template("index.html", recipe_count=str(recipe_count), ccuisine_count=str(ccuisine_count), mcuisine_count=str(mcuisine_count),
+        bcuisine_count=str(bcuisine_count), icuisine_count=str(icuisine_count), incuisine_count=str(incuisine_count), ucuisine_count=str(ucuisine_count), acuisine_count=str(acuisine_count), recipes=mongo.db.recipes.find())
 
 ################## MY RECIPES #################
 
