@@ -43,7 +43,7 @@ def myrecipes():
     ucuisine_count = mongo.db.myrecipes.find({"cuisine" : "unspecified"}).count()
     if 'username' in session:
         return render_template("myrecipes.html", recipe_count=str(recipe_count), ccuisine_count=str(ccuisine_count), 
-        bcuisine_count=str(bcuisine_count), ucuisine_count=str(ucuisine_count), acuisine_count=str
+        bcuisine_count=str(bcuisine_count), ucuisine_count=str(ucuisine_count), acuisine_count=str(acuisine_count),
         myrecipes=mongo.db.myrecipes.find())
     return redirect(url_for('login'))
         
