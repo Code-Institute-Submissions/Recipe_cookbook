@@ -26,7 +26,7 @@ def all_recipes():
     ucuisine_count = mongo.db.myrecipes.find({"cuisine" : "unspecified"}).count()
 
     return render_template("index.html", recipe_count=str(recipe_count), ccuisine_count=str(ccuisine_count), 
-        bcuisine_count=str(bcuisine_count), ucuisine_count=str(ucuisine_count), recipes=mongo.db.recipes.find())
+        bcuisine_count=str(bcuisine_count), ucuisine_count=str(ucuisine_count), acuisine_count=str(acuisine_count), recipes=mongo.db.recipes.find())
 
 ################## MY RECIPES #################
 
@@ -43,7 +43,7 @@ def myrecipes():
     ucuisine_count = mongo.db.myrecipes.find({"cuisine" : "unspecified"}).count()
     if 'username' in session:
         return render_template("myrecipes.html", recipe_count=str(recipe_count), ccuisine_count=str(ccuisine_count), 
-        bcuisine_count=str(bcuisine_count), ucuisine_count=str(ucuisine_count),
+        bcuisine_count=str(bcuisine_count), ucuisine_count=str(ucuisine_count), acuisine_count=str
         myrecipes=mongo.db.myrecipes.find())
     return redirect(url_for('login'))
         
